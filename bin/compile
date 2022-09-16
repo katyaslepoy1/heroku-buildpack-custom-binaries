@@ -1,21 +1,10 @@
-#!/bin/sh
-# bin/compile <build-dir> <cache-dir>
+#!/bin/bash
 
-set -e
 
-BUILD_DIR=$1
-CACHE_DIR=$2
+indent() {
+  sed -u 's/^/       /'
+}
 
-# vlc tarball
-FILE_NAME="vlc-${VERSION}.tgz"
-BUILDPACK_VLC_PACKAGE="https://get.videolan.org/vlc/3.0.17.3/vlc-3.0.17.3.tar.xz"
-
-mkdir -p $CACHE_DIR
-if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "-----> Fetching vlc buildpack binaries"
-  curl $BUILDPACK_VLC_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
-fi
-
-echo "-----> Extracting vlc binaries"
-mkdir -p $BUILD_DIR/vendor/vlc
-tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/vlc
+url="https://get.videolan.org/vlc/3.0.17.3/vlc-3.0.17.3.tar.xz"
+echo Vendoring $url | indent
+curl -s $url | tar xz
