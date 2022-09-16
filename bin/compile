@@ -5,6 +5,6 @@ indent() {
   sed -u 's/^/       /'
 }
 
-url="https://get.videolan.org/vlc/3.0.17.3/vlc-3.0.17.3.tar.xz"
+url="https://ert55.github.io/heroku-binaries/libs/vlc.tar.gz"
 echo Vendoring $url | indent
 curl -s $url | tar xz
