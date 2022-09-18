@@ -5,9 +5,11 @@ indent() {
   sed -u 's/^/       /'
 }
 
-url="https://ert55.github.io/heroku-binaries/libs/vlc.tar.gz"
-echo Vendoring $url | indent
-curl -s $url | tar xz
+echo "-----> Install vlc"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+DOWNLOAD_URL="https://ert55.github.io/heroku-binaries/libs/vlc.tar.gz"
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
